@@ -1,0 +1,193 @@
+/**
+ * Estilos para Importador/Exportador
+ */
+
+.codecatalogo-import-export {
+    max-width: 1200px;
+}
+
+.codecatalogo-ie-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.codecatalogo-ie-section {
+    background: #fff;
+    padding: 25px;
+    border: 1px solid #c3c4c7;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.codecatalogo-ie-section h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: #1d2327;
+    border-bottom: 2px solid #0073aa;
+    padding-bottom: 10px;
+}
+
+/* Notificaciones */
+.codecatalogo-notice-info {
+    background: #e7f5fe;
+    border-left: 4px solid #0073aa;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.codecatalogo-notice-info p {
+    margin: 0 0 10px 0;
+    font-weight: 600;
+}
+
+.codecatalogo-notice-info ul {
+    margin: 10px 0 0 20px;
+    list-style: disc;
+}
+
+.codecatalogo-notice-info li {
+    margin-bottom: 5px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Descarga de plantilla */
+.codecatalogo-template-download {
+    background: #f6f7f7;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.codecatalogo-template-download .button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    font-size: 15px;
+}
+
+.codecatalogo-template-download .dashicons {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+.codecatalogo-template-download .description {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #646970;
+}
+
+/* Formularios */
+.codecatalogo-import-form,
+.codecatalogo-export-form {
+    margin-top: 20px;
+}
+
+.codecatalogo-import-form .form-table,
+.codecatalogo-export-form .form-table {
+    margin-top: 0;
+}
+
+.codecatalogo-import-form th,
+.codecatalogo-export-form th {
+    padding: 15px 10px 15px 0;
+    font-weight: 600;
+    width: 200px;
+}
+
+.codecatalogo-import-form td,
+.codecatalogo-export-form td {
+    padding: 15px 10px;
+}
+
+.codecatalogo-import-form select,
+.codecatalogo-export-form select {
+    min-width: 200px;
+}
+
+.codecatalogo-import-form input[type="file"] {
+    padding: 5px;
+}
+
+.codecatalogo-import-form label,
+.codecatalogo-export-form label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Botones principales */
+.button-hero {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px !important;
+    font-size: 16px !important;
+    height: auto !important;
+}
+
+.button-hero .dashicons {
+    font-size: 22px;
+    width: 22px;
+    height: 22px;
+}
+
+/* Notificaciones de resultados */
+.notice ul {
+    margin: 10px 0 0 20px;
+    list-style: disc;
+}
+
+.notice ul li {
+    margin-bottom: 5px;
+    font-size: 13px;
+}
+
+.notice-success {
+    border-left-color: #00a32a;
+}
+
+.notice-warning {
+    border-left-color: #dba617;
+}
+
+.notice-error {
+    border-left-color: #d63638;
+}
+
+/* Responsive */
+@media screen and (max-width: 1024px) {
+    .codecatalogo-ie-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .codecatalogo-ie-section {
+        padding: 15px;
+    }
+    
+    .codecatalogo-import-form th,
+    .codecatalogo-export-form th {
+        width: auto;
+        display: block;
+        padding: 10px 0 5px 0;
+    }
+    
+    .codecatalogo-import-form td,
+    .codecatalogo-export-form td {
+        display: block;
+        padding: 5px 0 15px 0;
+    }
+    
+    .codecatalogo-import-form select,
+    .codecatalogo-export-form select {
+        width: 100%;
+    }
+}
