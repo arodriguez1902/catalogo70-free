@@ -8,6 +8,7 @@ if (!defined('ABSPATH')) {
 }
 
 class CodeCatalogo_Field_Manager {
+    const FREE_MAX_FIELDS = 10;
     
     private $table_name;
     private $values_table;

@@ -1,7 +1,6 @@
 <?php
 /**
- * Template para producto individual
- * Versión optimizada sin duplicaciones
+ * Template producto individual - Versión FREE
  */
 
 if (!defined('ABSPATH')) {
@@ -11,34 +10,29 @@ if (!defined('ABSPATH')) {
 get_header();
 
 $field_manager = new CodeCatalogo_Field_Manager();
-$cta_handler = new CodeCatalogo_CTA_Handler();
 $seo = new CodeCatalogo_SEO();
 
 while (have_posts()) : the_post();
     
     $product_id = get_the_ID();
     $fields = $field_manager->get_product_fields($product_id);
-    $cta = $cta_handler->get_product_cta($product_id);
     
     ?>
     
     <article id="product-<?php the_ID(); ?>" <?php post_class('codecatalogo-single-product'); ?>>
         
-        <!-- Breadcrumbs -->
         <div class="codecatalogo-breadcrumbs-wrapper">
             <?php echo wp_kses_post($seo->render_breadcrumbs($product_id)); ?>
         </div>
         
         <div class="codecatalogo-product-container">
             
-                        <!-- Galería de imágenes con slider -->
             <div class="codecatalogo-product-gallery">
                 <?php
                 $gallery_ids = get_post_meta($product_id, '_codecatalogo_gallery_ids', true);
                 $gallery_ids = !empty($gallery_ids) ? explode(',', $gallery_ids) : array();
                 $all_images = array();
 
-                // Imagen destacada siempre es la primera
                 if (has_post_thumbnail()) {
                     $all_images[] = array(
                         'id' => get_post_thumbnail_id($product_id),
@@ -48,7 +42,6 @@ while (have_posts()) : the_post();
                     );
                 }
 
-                // Imágenes de galería
                 foreach ($gallery_ids as $attach_id) {
                     $attach_id = intval(trim($attach_id));
                     if ($attach_id && $attach_id !== get_post_thumbnail_id($product_id)) {
@@ -56,57 +49,37 @@ while (have_posts()) : the_post();
                         $large = wp_get_attachment_image_src($attach_id, 'large');
                         $thumb = wp_get_attachment_image_src($attach_id, 'thumbnail');
                         if ($full) {
-                            $all_images[] = array(
-                                'id' => $attach_id,
-                                'full' => $full[0],
-                                'large' => $large ? $large[0] : $full[0],
-                                'thumb' => $thumb ? $thumb[0] : $full[0],
-                            );
+                            $all_images[] = array('id' => $attach_id, 'full' => $full[0], 'large' => $large ? $large[0] : $full[0], 'thumb' => $thumb ? $thumb[0] : $full[0]);
                         }
                     }
                 }
                 ?>
 
                 <?php if (!empty($all_images)): ?>
-                    <!-- Imagen principal / Slider -->
                     <div class="codecatalogo-gallery-main" id="codecatalogo-gallery-main">
                         <div class="codecatalogo-gallery-track">
                             <?php foreach ($all_images as $index => $image): ?>
                             <div class="codecatalogo-gallery-slide <?php echo $index === 0 ? 'active' : ''; ?>" data-index="<?php echo esc_attr($index); ?>">
-                                <img src="<?php echo esc_url($image['large']); ?>" 
-                                     alt="<?php echo esc_attr(get_the_title() . ' - imagen ' . ($index + 1)); ?>"
-                                     loading="<?php echo $index === 0 ? 'eager' : 'lazy'; ?>">
+                                <img src="<?php echo esc_url($image['large']); ?>" alt="<?php echo esc_attr(get_the_title() . ' - imagen ' . ($index + 1)); ?>" loading="<?php echo $index === 0 ? 'eager' : 'lazy'; ?>">
                             </div>
                             <?php endforeach; ?>
                         </div>
-                        
                         <?php if (count($all_images) > 1): ?>
-                        <button type="button" class="codecatalogo-gallery-nav codecatalogo-gallery-prev" aria-label="<?php esc_attr_e('Anterior', 'catalogo70'); ?>">
-                            <span class="dashicons dashicons-arrow-left-alt2"></span>
-                        </button>
-                        <button type="button" class="codecatalogo-gallery-nav codecatalogo-gallery-next" aria-label="<?php esc_attr_e('Siguiente', 'catalogo70'); ?>">
-                            <span class="dashicons dashicons-arrow-right-alt2"></span>
-                        </button>
+                        <button type="button" class="codecatalogo-gallery-nav codecatalogo-gallery-prev" aria-label="<?php esc_attr_e('Anterior', 'catalogo70'); ?>"><span class="dashicons dashicons-arrow-left-alt2"></span></button>
+                        <button type="button" class="codecatalogo-gallery-nav codecatalogo-gallery-next" aria-label="<?php esc_attr_e('Siguiente', 'catalogo70'); ?>"><span class="dashicons dashicons-arrow-right-alt2"></span></button>
                         <?php endif; ?>
                     </div>
-
-                    <!-- Miniaturas -->
                     <?php if (count($all_images) > 1): ?>
                     <div class="codecatalogo-gallery-thumbs">
                         <?php foreach ($all_images as $index => $image): ?>
                         <div class="codecatalogo-gallery-thumb <?php echo $index === 0 ? 'active' : ''; ?>" data-index="<?php echo esc_attr($index); ?>">
-                            <img src="<?php echo esc_url($image['thumb']); ?>" 
-                                 alt="<?php echo esc_attr(get_the_title() . ' - miniatura ' . ($index + 1)); ?>"
-                                 loading="lazy">
+                            <img src="<?php echo esc_url($image['thumb']); ?>" alt="<?php echo esc_attr(get_the_title() . ' - miniatura ' . ($index + 1)); ?>" loading="lazy">
                         </div>
                         <?php endforeach; ?>
                     </div>
                     <?php endif; ?>
-                    
                 <?php else: ?>
-                    <div class="codecatalogo-product-image-placeholder">
-                        <span class="dashicons dashicons-format-image"></span>
-                    </div>
+                    <div class="codecatalogo-product-image-placeholder"><span class="dashicons dashicons-format-image"></span></div>
                 <?php endif; ?>
             </div>
 
@@ -114,133 +87,77 @@ while (have_posts()) : the_post();
             (function() {
                 var mainEl = document.getElementById('codecatalogo-gallery-main');
                 if (!mainEl) return;
-                
                 var track = mainEl.querySelector('.codecatalogo-gallery-track');
                 var slides = track.querySelectorAll('.codecatalogo-gallery-slide');
                 var thumbs = document.querySelectorAll('.codecatalogo-gallery-thumb');
                 var prevBtn = mainEl.querySelector('.codecatalogo-gallery-prev');
                 var nextBtn = mainEl.querySelector('.codecatalogo-gallery-next');
                 var currentIndex = 0;
-
                 function goTo(index) {
                     if (index < 0) index = slides.length - 1;
                     if (index >= slides.length) index = 0;
                     currentIndex = index;
-                    
-                    slides.forEach(function(s, i) {
-                        s.classList.toggle('active', i === index);
-                    });
-                    thumbs.forEach(function(t, i) {
-                        t.classList.toggle('active', i === index);
-                    });
-                    
-                    var slideWidth = slides[0].offsetWidth;
-                    track.style.transform = 'translateX(-' + (index * slideWidth) + 'px)';
+                    slides.forEach(function(s, i) { s.classList.toggle('active', i === index); });
+                    thumbs.forEach(function(t, i) { t.classList.toggle('active', i === index); });
+                    track.style.transform = 'translateX(-' + (index * slides[0].offsetWidth) + 'px)';
                 }
-
-                if (prevBtn && nextBtn) {
-                    prevBtn.addEventListener('click', function() { goTo(currentIndex - 1); });
-                    nextBtn.addEventListener('click', function() { goTo(currentIndex + 1); });
-                }
-
-                thumbs.forEach(function(thumb) {
-                    thumb.addEventListener('click', function() {
-                        goTo(parseInt(this.getAttribute('data-index')));
-                    });
-                });
-
-                // Touch support
+                if (prevBtn && nextBtn) { prevBtn.addEventListener('click', function() { goTo(currentIndex - 1); }); nextBtn.addEventListener('click', function() { goTo(currentIndex + 1); }); }
+                thumbs.forEach(function(t) { t.addEventListener('click', function() { goTo(parseInt(this.getAttribute('data-index'))); }); });
                 var startX = 0, isDragging = false;
-                mainEl.addEventListener('touchstart', function(e) {
-                    startX = e.touches[0].clientX;
-                    isDragging = true;
-                }, { passive: true });
+                mainEl.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; isDragging = true; }, { passive: true });
                 mainEl.addEventListener('touchend', function(e) {
                     if (!isDragging) return;
                     var endX = e.changedTouches[0].clientX;
                     var diff = startX - endX;
-                    if (Math.abs(diff) > 50) {
-                        if (diff > 0) goTo(currentIndex + 1);
-                        else goTo(currentIndex - 1);
-                    }
+                    if (Math.abs(diff) > 50) { if (diff > 0) goTo(currentIndex + 1); else goTo(currentIndex - 1); }
                     isDragging = false;
                 }, { passive: true });
             })();
             </script>
             
-            <!-- Información del producto -->
             <div class="codecatalogo-product-info">
-                
                 <header class="codecatalogo-product-header">
                     <h1 class="codecatalogo-product-title"><?php the_title(); ?></h1>
-                    
-                    <?php
-                    $categories = get_the_terms($product_id, 'codecatalogo_cat');
-                    if ($categories && !is_wp_error($categories)):
-                    ?>
+                    <?php $categories = get_the_terms($product_id, 'codecatalogo_cat');
+                    if ($categories && !is_wp_error($categories)): ?>
                     <div class="codecatalogo-product-categories">
                         <?php foreach ($categories as $category): ?>
-                            <a href="<?php echo esc_url(get_term_link($category)); ?>" class="codecatalogo-category-badge">
-                                <?php echo esc_html($category->name); ?>
-                            </a>
+                            <a href="<?php echo esc_url(get_term_link($category)); ?>" class="codecatalogo-category-badge"><?php echo esc_html($category->name); ?></a>
                         <?php endforeach; ?>
                     </div>
                     <?php endif; ?>
                 </header>
-                
-                <!-- Extracto/Descripción corta -->
                 <?php if (has_excerpt()): ?>
-                <div class="codecatalogo-product-excerpt">
-                    <?php the_excerpt(); ?>
-                </div>
+                <div class="codecatalogo-product-excerpt"><?php the_excerpt(); ?></div>
                 <?php endif; ?>
-                
-                <!-- Especificaciones técnicas - ÚNICA APARICIÓN -->
                 <?php if (!empty($fields)): ?>
                 <div class="codecatalogo-product-specs">
                     <h3><?php esc_html_e('Especificaciones Técnicas', 'catalogo70'); ?></h3>
                     <table class="codecatalogo-specs-table">
                         <tbody>
-                            <?php foreach ($fields as $field): ?>
-                                <?php if (!empty($field->field_value)): ?>
-                                                                <tr>
-                                    <th>
-                                        <?php echo esc_html($field->field_label); ?>
-                                    </th>
-                                    <td>
-                                        <?php if ($field->field_type === 'file' && !empty($field->field_value)): ?>
-                                            <a href="<?php echo esc_url($field->field_value); ?>" target="_blank" class="codecatalogo-file-link">
-                                                <span class="dashicons dashicons-download"></span>
-                                                <?php esc_html_e('Descargar', 'catalogo70'); ?>
-                                            </a>
-                                        <?php elseif ($field->field_type === 'url'): ?>
-                                            <a href="<?php echo esc_url($field->field_value); ?>" target="_blank">
-                                                <?php echo esc_html($field->field_value); ?>
-                                            </a>
-                                        <?php else: ?>
-                                            <?php echo esc_html($field->field_value); ?>
-                                        <?php endif; ?>
-                                    </td>
-                                </tr>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
+                            <?php foreach ($fields as $field):
+                                if (!empty($field->field_value)):
+                            ?>
+                            <tr>
+                                <th><?php echo esc_html($field->field_label); ?></th>
+                                <td>
+                                    <?php if ($field->field_type === 'file' && !empty($field->field_value)): ?>
+                                        <a href="<?php echo esc_url($field->field_value); ?>" target="_blank" class="codecatalogo-file-link"><span class="dashicons dashicons-download"></span> <?php esc_html_e('Descargar', 'catalogo70'); ?></a>
+                                    <?php elseif ($field->field_type === 'url'): ?>
+                                        <a href="<?php echo esc_url($field->field_value); ?>" target="_blank"><?php echo esc_html($field->field_value); ?></a>
+                                    <?php else: ?>
+                                        <?php echo esc_html($field->field_value); ?>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                            <?php endif; endforeach; ?>
                         </tbody>
                     </table>
                 </div>
                 <?php endif; ?>
-                
-                <!-- CTA -->
-                <?php if ($cta && in_array($cta->cta_position, array('top', 'bottom', 'both'))): ?>
-                <div class="codecatalogo-cta-section">
-                    <?php echo wp_kses_post($cta_handler->render_cta_button($product_id, 'single')); ?>
-                </div>
-                <?php endif; ?>
-                
             </div>
-            
         </div>
         
-        <!-- Contenido completo / Descripción detallada -->
         <?php if (get_the_content()): ?>
         <div class="codecatalogo-product-content">
             <h2><?php esc_html_e('Descripción Detallada', 'catalogo70'); ?></h2>
@@ -248,69 +165,28 @@ while (have_posts()) : the_post();
         </div>
         <?php endif; ?>
         
-        <!-- Etiquetas -->
-        <?php
-        $tags = get_the_terms($product_id, 'codecatalogo_tag');
-        if ($tags && !is_wp_error($tags)):
-        ?>
-        <div class="codecatalogo-product-tags">
-            <strong><?php esc_html_e('Etiquetas:', 'catalogo70'); ?></strong>
-            <?php foreach ($tags as $tag): ?>
-                <a href="<?php echo esc_url(get_term_link($tag)); ?>" class="codecatalogo-tag">
-                    <?php echo esc_html($tag->name); ?>
-                </a>
-            <?php endforeach; ?>
-        </div>
-        <?php endif; ?>
-        
-        <!-- CTA Flotante -->
-        <?php if ($cta && $cta->cta_position === 'floating'): ?>
-        <div class="codecatalogo-cta-floating">
-            <?php echo wp_kses_post($cta_handler->render_cta_button($product_id, 'floating')); ?>
-        </div>
-        <?php endif; ?>
-        
-        <!-- Productos relacionados -->
         <?php
         $related = new WP_Query(array(
             'post_type' => 'codecatalogo_product',
             'posts_per_page' => 4,
             'post__not_in' => array($product_id),
-            'tax_query' => array(
-                array(
-                    'taxonomy' => 'codecatalogo_cat',
-                    'field' => 'term_id',
-                    'terms' => wp_get_post_terms($product_id, 'codecatalogo_cat', array('fields' => 'ids')),
-                ),
-            ),
+            'tax_query' => array(array('taxonomy' => 'codecatalogo_cat', 'field' => 'term_id', 'terms' => wp_get_post_terms($product_id, 'codecatalogo_cat', array('fields' => 'ids')))),
         ));
-        
         if ($related->have_posts()):
         ?>
         <div class="codecatalogo-related-products">
             <h2><?php esc_html_e('Productos Relacionados', 'catalogo70'); ?></h2>
             <div class="codecatalogo-products-grid codecatalogo-columns-4">
-                <?php
-                $display = new CodeCatalogo_Display();
-                while ($related->have_posts()):
-                    $related->the_post();
-                    $display->render_product_card(get_the_ID());
-                endwhile;
-                wp_reset_postdata();
-                ?>
+                <?php $display = new CodeCatalogo_Display();
+                while ($related->have_posts()): $related->the_post(); $display->render_product_card(get_the_ID()); endwhile;
+                wp_reset_postdata(); ?>
             </div>
         </div>
         <?php endif; ?>
         
-        </article>
+    </article>
     
-    <?php
-    // Renderizar modal de contacto
-    $display = new CodeCatalogo_Display();
-    echo wp_kses_post($display->render_catalog_modal_only());
-    ?>
-    
-    <?php
+<?php
 endwhile;
 
 get_footer();

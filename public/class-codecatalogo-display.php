@@ -10,11 +10,9 @@ if (!defined('ABSPATH')) {
 class CodeCatalogo_Display {
     
     private $field_manager;
-    private $cta_handler;
     
     public function __construct() {
         $this->field_manager = new CodeCatalogo_Field_Manager();
-        $this->cta_handler = new CodeCatalogo_CTA_Handler();
     }
     
     /**
@@ -81,8 +79,7 @@ public function render_catalog($atts = array()) {
     </div>
     
     <!-- Modal de contacto -->
-    <?php $this->render_contact_modal(); ?>
-    
+
     <?php
     return ob_get_clean();
 }
@@ -213,7 +210,7 @@ public function render_catalog($atts = array()) {
      */
     public function render_product_card($product_id) {
         $fields = $this->field_manager->get_product_fields($product_id, true);
-        $cta = $this->cta_handler->get_product_cta($product_id);
+        
         
         include CODECATALOGO_PATH . 'public/templates/product-card.php';
     }
@@ -247,63 +244,8 @@ public function render_catalog($atts = array()) {
     /**
      * Renderizar solo el modal de contacto (para usar fuera del catálogo)
      */
-    public function render_catalog_modal_only() {
-        ob_start();
-        $this->render_contact_modal();
-        return ob_get_clean();
-    }
     
         /**
      * Renderizar modal de contacto - CON CAMPO HIDDEN product_name
      */
-    private function render_contact_modal() {
-        ?>
-        <div id="codecatalogo-contact-modal" class="codecatalogo-modal" style="display: none;">
-            <div class="codecatalogo-modal-overlay"></div>
-            <div class="codecatalogo-modal-content">
-                <button type="button" class="codecatalogo-modal-close" aria-label="Cerrar">&times;</button>
-                
-                <div class="codecatalogo-modal-header">
-                    <h3><?php esc_html_e('Solicitar Información', 'catalogo70'); ?></h3>
-                </div>
-                
-                <form id="codecatalogo-contact-form">
-                    <input type="hidden" id="contact-product-id" name="product_id">
-                    <input type="hidden" id="contact-product-name" name="product_name">
-                    
-                    <div class="codecatalogo-form-group">
-                        <label for="contact-name"><?php esc_html_e('Nombre', 'catalogo70'); ?> *</label>
-                        <input type="text" id="contact-name" name="name" required>
-                    </div>
-                    
-                    <div class="codecatalogo-form-group">
-                        <label for="contact-email"><?php esc_html_e('Email', 'catalogo70'); ?> *</label>
-                        <input type="email" id="contact-email" name="email" required>
-                    </div>
-                    
-                    <div class="codecatalogo-form-group">
-                        <label for="contact-phone"><?php esc_html_e('Teléfono', 'catalogo70'); ?></label>
-                        <input type="tel" id="contact-phone" name="phone">
-                    </div>
-                    
-                    <div class="codecatalogo-form-group">
-                        <label for="contact-message"><?php esc_html_e('Mensaje', 'catalogo70'); ?> *</label>
-                        <textarea id="contact-message" name="message" rows="4" required></textarea>
-                    </div>
-                    
-                    <div class="codecatalogo-form-actions">
-                        <button type="submit" class="codecatalogo-btn codecatalogo-btn-primary">
-                            <?php esc_html_e('Enviar', 'catalogo70'); ?>
-                        </button>
-                        <button type="button" class="codecatalogo-btn codecatalogo-btn-secondary codecatalogo-modal-cancel">
-                            <?php esc_html_e('Cancelar', 'catalogo70'); ?>
-                        </button>
-                    </div>
-                    
-                    <div class="codecatalogo-form-message" style="display: none;"></div>
-                </form>
-            </div>
-        </div>
-        <?php
-    }
 }

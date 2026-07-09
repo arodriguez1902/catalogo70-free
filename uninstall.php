@@ -75,11 +75,9 @@ $options = array(
     'codecatalogo_catalog_layout',
     'codecatalogo_enable_seo',
     'codecatalogo_enable_schema',
-    'codecatalogo_default_whatsapp',
     'codecatalogo_default_form_email',
     'codecatalogo_card_style',
     'codecatalogo_primary_color',
-    'codecatalogo_secondary_color',
 );
 
 foreach ($options as $option) {
