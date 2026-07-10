@@ -345,7 +345,7 @@ class CodeCatalogo_Field_Manager {
     public function add_meta_boxes() {
         add_meta_box(
             'codecatalogo_product_fields',
-            __('Especificaciones del Producto', 'catalogo70'),
+            __('Especificaciones del Producto','catalogo70free'),
             array($this, 'render_fields_meta_box'),
             'codecatalogo_product',
             'normal',
@@ -354,7 +354,7 @@ class CodeCatalogo_Field_Manager {
 
         add_meta_box(
             'codecatalogo_product_gallery',
-            __('Galería de Imágenes', 'catalogo70'),
+            __('Galería de Imágenes','catalogo70free'),
             array($this, 'render_gallery_meta_box'),
             'codecatalogo_product',
             'side',
@@ -373,7 +373,7 @@ class CodeCatalogo_Field_Manager {
         ?>
         <div class="codecatalogo-gallery-wrapper">
             <p style="font-size:12px;color:#646970;margin-bottom:10px;">
-                <?php esc_html_e('Imágenes adicionales del producto. Arrastra para reordenar.', 'catalogo70'); ?>
+                <?php esc_html_e('Imágenes adicionales del producto. Arrastra para reordenar.','catalogo70free'); ?>
             </p>
             
             <input type="hidden" id="codecatalogo-gallery-ids" name="codecatalogo_gallery_ids" 
@@ -395,12 +395,12 @@ class CodeCatalogo_Field_Manager {
                 </ul>
                 
                 <p id="codecatalogo-gallery-empty" style="display:<?php echo !empty($gallery_ids) ? 'none' : 'block'; ?>;color:#787c82;font-style:italic;font-size:12px;text-align:center;">
-                    <?php esc_html_e('No hay imágenes. Haz clic en "Agregar imágenes".', 'catalogo70'); ?>
+                    <?php esc_html_e('No hay imágenes. Haz clic en "Agregar imágenes".','catalogo70free'); ?>
                 </p>
                 
                 <button type="button" class="button" id="codecatalogo-gallery-add">
                     <span class="dashicons dashicons-format-gallery" style="vertical-align:middle;"></span>
-                    <?php esc_html_e('Agregar imágenes', 'catalogo70'); ?>
+                    <?php esc_html_e('Agregar imágenes','catalogo70free'); ?>
                 </button>
             </div>
         </div>
@@ -520,7 +520,7 @@ class CodeCatalogo_Field_Manager {
         $fields = $this->get_product_fields($post->ID);
         
                 if (empty($fields)) {
-            echo '<p>' . esc_html__('No hay campos configurados. Por favor, configura los campos en Catálogo Pro > Campos.', 'catalogo70') . '</p>';
+            echo '<p>' . esc_html__('No hay campos configurados. Por favor, configura los campos en Catálogo Pro > Campos.','catalogo70free') . '</p>';
             return;
         }
         
@@ -695,7 +695,7 @@ class CodeCatalogo_Field_Manager {
                       name="' . esc_attr($field_name) . '" 
                       class="widefat"' .
                       ($is_required ? ' required' : '') . '>';
-                echo '<option value="">-- ' . esc_html__('Seleccionar', 'catalogo70') . ' --</option>';
+                echo '<option value="">-- ' . esc_html__('Seleccionar','catalogo70free') . ' --</option>';
                 
                 foreach ($options as $opt_value => $opt_label) {
                     echo '<option value="' . esc_attr($opt_value) . '" ' . selected($value, $opt_value, false) . '>';
@@ -718,13 +718,13 @@ class CodeCatalogo_Field_Manager {
                 echo '<button type="button" 
                       class="button codecatalogo-upload-file codecatalogo-upload-btn" 
                       data-target="' . esc_attr($field_id) . '">
-                      <span class="dashicons dashicons-upload"></span> ' . esc_html__('Subir', 'catalogo70') . '
+                      <span class="dashicons dashicons-upload"></span> ' . esc_html__('Subir','catalogo70free') . '
                       </button>';
                 
                 if ($value) {
                     echo '<div class="codecatalogo-file-preview">';
                     echo '<a href="' . esc_url($value) . '" target="_blank" class="button">
-                          <span class="dashicons dashicons-media-document"></span> ' . esc_html__('Ver Archivo', 'catalogo70') . '
+                          <span class="dashicons dashicons-media-document"></span> ' . esc_html__('Ver Archivo','catalogo70free') . '
                           </a>';
                     echo '</div>';
                 }

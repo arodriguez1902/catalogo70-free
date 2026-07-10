@@ -40,7 +40,7 @@ public function render_catalog($atts = array()) {
             <div class="codecatalogo-search-box">
                 <input type="search" 
                        class="codecatalogo-search" 
-                       placeholder="<?php esc_html_e('Buscar productos...', 'catalogo70'); ?>">
+                       placeholder="<?php esc_html_e('Buscar productos...','catalogo70free'); ?>">
                 <button type="button" class="codecatalogo-search-btn">
                     <span class="dashicons dashicons-search"></span>
                 </button>
@@ -95,7 +95,7 @@ public function render_catalog($atts = array()) {
         }
         
         echo '<div class="codecatalogo-filters-wrapper">';
-        echo '<h4>' . esc_html__('Filtrar por:', 'catalogo70') . '</h4>';
+        echo '<h4>' . esc_html__('Filtrar por:','catalogo70free') . '</h4>';
         
         // Filtro de categorías
         $categories = get_terms(array(
@@ -105,9 +105,9 @@ public function render_catalog($atts = array()) {
         
         if (!empty($categories) && !is_wp_error($categories)) {
             echo '<div class="codecatalogo-filter-group">';
-                        echo '<label>' . esc_html__('Categoría', 'catalogo70') . '</label>';
+                        echo '<label>' . esc_html__('Categoría','catalogo70free') . '</label>';
             echo '<select class="codecatalogo-filter" data-filter-type="category">';
-            echo '<option value="">' . esc_html__('Todas las categorías', 'catalogo70') . '</option>';
+            echo '<option value="">' . esc_html__('Todas las categorías','catalogo70free') . '</option>';
             foreach ($categories as $category) {
                 echo '<option value="' . esc_attr($category->term_id) . '">' . esc_html($category->name) . '</option>';
             }
@@ -123,7 +123,7 @@ public function render_catalog($atts = array()) {
                     if ($field->field_type === 'select') {
                         $options = json_decode($field->field_options, true);
                         echo '<select class="codecatalogo-filter" data-filter-field="' . esc_attr($field->id) . '">';
-                        echo '<option value="">' . esc_html__('Todos', 'catalogo70') . '</option>';
+                        echo '<option value="">' . esc_html__('Todos','catalogo70free') . '</option>';
                         foreach ($options as $value => $label) {
                             echo '<option value="' . esc_attr($value) . '">' . esc_html($label) . '</option>';
                         }
@@ -132,7 +132,7 @@ public function render_catalog($atts = array()) {
                         $unique_values = $this->get_unique_field_values($field->id);
                         if (!empty($unique_values)) {
                             echo '<select class="codecatalogo-filter" data-filter-field="' . esc_attr($field->id) . '">';
-                            echo '<option value="">' . esc_html__('Todos', 'catalogo70') . '</option>';
+                            echo '<option value="">' . esc_html__('Todos','catalogo70free') . '</option>';
                             foreach ($unique_values as $value) {
                                 echo '<option value="' . esc_attr($value) . '">' . esc_html($value) . '</option>';
                             }
@@ -143,7 +143,7 @@ public function render_catalog($atts = array()) {
                     echo '</div>';
                 }
         
-        echo '<button type="button" class="codecatalogo-clear-filters">' . esc_html__('Limpiar filtros', 'catalogo70') . '</button>';
+        echo '<button type="button" class="codecatalogo-clear-filters">' . esc_html__('Limpiar filtros','catalogo70free') . '</button>';
         echo '</div>';
     }
     
@@ -200,7 +200,7 @@ public function render_catalog($atts = array()) {
             wp_reset_postdata();
         } else {
             echo '<div class="codecatalogo-no-results">';
-            echo '<p>' . esc_html__('No se encontraron productos.', 'catalogo70') . '</p>';
+            echo '<p>' . esc_html__('No se encontraron productos.','catalogo70free') . '</p>';
             echo '</div>';
         }
     }
@@ -234,11 +234,11 @@ public function render_catalog($atts = array()) {
             'format' => '?paged=%#%',
             'current' => max(1, $paged),
             'total' => $wp_query->max_num_pages,
-            'prev_text' => '&laquo; ' . esc_html__('Anterior', 'catalogo70'),
-            'next_text' => esc_html__('Siguiente', 'catalogo70') . ' &raquo;',
+            'prev_text' => '&laquo; ' . esc_html__('Anterior','catalogo70free'),
+            'next_text' => esc_html__('Siguiente','catalogo70free') . ' &raquo;',
             'mid_size' => 2,
         ));
-        echo $pagination_links;
+                echo wp_kses_post($pagination_links);
     }
     
     /**

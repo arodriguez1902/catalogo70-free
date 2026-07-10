@@ -37,35 +37,35 @@ class CodeCatalogo_CPT {
         $catalog_slug = get_option('codecatalogo_catalog_slug', 'catalogo');
         
         $labels = array(
-            'name'                  => _x('Productos', 'Post type general name', 'catalogo70'),
-            'singular_name'         => _x('Producto', 'Post type singular name', 'catalogo70'),
-            'menu_name'             => _x('Catálogo Pro', 'Admin Menu text', 'catalogo70'),
-            'name_admin_bar'        => _x('Producto', 'Add New on Toolbar', 'catalogo70'),
-            'add_new'               => __('Añadir Nuevo', 'catalogo70'),
-            'add_new_item'          => __('Añadir Nuevo Producto', 'catalogo70'),
-            'new_item'              => __('Nuevo Producto', 'catalogo70'),
-            'edit_item'             => __('Editar Producto', 'catalogo70'),
-            'view_item'             => __('Ver Producto', 'catalogo70'),
-            'all_items'             => __('Todos los Productos', 'catalogo70'),
-            'search_items'          => __('Buscar Productos', 'catalogo70'),
-            'parent_item_colon'     => __('Productos Padre:', 'catalogo70'),
-            'not_found'             => __('No se encontraron productos.', 'catalogo70'),
-            'not_found_in_trash'    => __('No se encontraron productos en la papelera.', 'catalogo70'),
-            'featured_image'        => _x('Imagen del Producto', 'Overrides the "Featured Image" phrase', 'catalogo70'),
-            'set_featured_image'    => _x('Establecer imagen del producto', 'Overrides the "Set featured image" phrase', 'catalogo70'),
-            'remove_featured_image' => _x('Remover imagen del producto', 'Overrides the "Remove featured image" phrase', 'catalogo70'),
-            'use_featured_image'    => _x('Usar como imagen del producto', 'Overrides the "Use as featured image" phrase', 'catalogo70'),
-            'archives'              => _x('Archivo de Productos', 'The post type archive label used in nav menus', 'catalogo70'),
-            'insert_into_item'      => _x('Insertar en producto', 'Overrides the "Insert into post" phrase', 'catalogo70'),
-            'uploaded_to_this_item' => _x('Subido a este producto', 'Overrides the "Uploaded to this post" phrase', 'catalogo70'),
-            'filter_items_list'     => _x('Filtrar lista de productos', 'Screen reader text for the filter links', 'catalogo70'),
-            'items_list_navigation' => _x('Navegación de productos', 'Screen reader text for the pagination', 'catalogo70'),
-            'items_list'            => _x('Lista de productos', 'Screen reader text for the items list', 'catalogo70'),
+            'name'                  => _x('Productos', 'Post type general name','catalogo70free'),
+            'singular_name'         => _x('Producto', 'Post type singular name','catalogo70free'),
+            'menu_name'             => _x('Catálogo Pro', 'Admin Menu text','catalogo70free'),
+            'name_admin_bar'        => _x('Producto', 'Add New on Toolbar','catalogo70free'),
+            'add_new'               => __('Añadir Nuevo','catalogo70free'),
+            'add_new_item'          => __('Añadir Nuevo Producto','catalogo70free'),
+            'new_item'              => __('Nuevo Producto','catalogo70free'),
+            'edit_item'             => __('Editar Producto','catalogo70free'),
+            'view_item'             => __('Ver Producto','catalogo70free'),
+            'all_items'             => __('Todos los Productos','catalogo70free'),
+            'search_items'          => __('Buscar Productos','catalogo70free'),
+            'parent_item_colon'     => __('Productos Padre:','catalogo70free'),
+            'not_found'             => __('No se encontraron productos.','catalogo70free'),
+            'not_found_in_trash'    => __('No se encontraron productos en la papelera.','catalogo70free'),
+            'featured_image'        => _x('Imagen del Producto', 'Overrides the "Featured Image" phrase','catalogo70free'),
+            'set_featured_image'    => _x('Establecer imagen del producto', 'Overrides the "Set featured image" phrase','catalogo70free'),
+            'remove_featured_image' => _x('Remover imagen del producto', 'Overrides the "Remove featured image" phrase','catalogo70free'),
+            'use_featured_image'    => _x('Usar como imagen del producto', 'Overrides the "Use as featured image" phrase','catalogo70free'),
+            'archives'              => _x('Archivo de Productos', 'The post type archive label used in nav menus','catalogo70free'),
+            'insert_into_item'      => _x('Insertar en producto', 'Overrides the "Insert into post" phrase','catalogo70free'),
+            'uploaded_to_this_item' => _x('Subido a este producto', 'Overrides the "Uploaded to this post" phrase','catalogo70free'),
+            'filter_items_list'     => _x('Filtrar lista de productos', 'Screen reader text for the filter links','catalogo70free'),
+            'items_list_navigation' => _x('Navegación de productos', 'Screen reader text for the pagination','catalogo70free'),
+            'items_list'            => _x('Lista de productos', 'Screen reader text for the items list','catalogo70free'),
         );
         
         $args = array(
             'labels'                => $labels,
-            'description'           => __('Productos del catálogo', 'catalogo70'),
+            'description'           => __('Productos del catálogo','catalogo70free'),
             'public'                => true,
             'publicly_queryable'    => true,
             'show_ui'               => true,
@@ -92,22 +92,22 @@ class CodeCatalogo_CPT {
     public function register_taxonomies() {
         // Categorías
         $cat_labels = array(
-            'name'                       => _x('Categorías', 'taxonomy general name', 'catalogo70'),
-            'singular_name'              => _x('Categoría', 'taxonomy singular name', 'catalogo70'),
-            'search_items'               => __('Buscar Categorías', 'catalogo70'),
-            'popular_items'              => __('Categorías Populares', 'catalogo70'),
-            'all_items'                  => __('Todas las Categorías', 'catalogo70'),
-            'parent_item'                => __('Categoría Padre', 'catalogo70'),
-            'parent_item_colon'          => __('Categoría Padre:', 'catalogo70'),
-            'edit_item'                  => __('Editar Categoría', 'catalogo70'),
-            'update_item'                => __('Actualizar Categoría', 'catalogo70'),
-            'add_new_item'               => __('Añadir Nueva Categoría', 'catalogo70'),
-            'new_item_name'              => __('Nombre de Nueva Categoría', 'catalogo70'),
-            'separate_items_with_commas' => __('Separar categorías con comas', 'catalogo70'),
-            'add_or_remove_items'        => __('Añadir o remover categorías', 'catalogo70'),
-            'choose_from_most_used'      => __('Elegir de las más usadas', 'catalogo70'),
-            'not_found'                  => __('No se encontraron categorías.', 'catalogo70'),
-            'menu_name'                  => __('Categorías', 'catalogo70'),
+            'name'                       => _x('Categorías', 'taxonomy general name','catalogo70free'),
+            'singular_name'              => _x('Categoría', 'taxonomy singular name','catalogo70free'),
+            'search_items'               => __('Buscar Categorías','catalogo70free'),
+            'popular_items'              => __('Categorías Populares','catalogo70free'),
+            'all_items'                  => __('Todas las Categorías','catalogo70free'),
+            'parent_item'                => __('Categoría Padre','catalogo70free'),
+            'parent_item_colon'          => __('Categoría Padre:','catalogo70free'),
+            'edit_item'                  => __('Editar Categoría','catalogo70free'),
+            'update_item'                => __('Actualizar Categoría','catalogo70free'),
+            'add_new_item'               => __('Añadir Nueva Categoría','catalogo70free'),
+            'new_item_name'              => __('Nombre de Nueva Categoría','catalogo70free'),
+            'separate_items_with_commas' => __('Separar categorías con comas','catalogo70free'),
+            'add_or_remove_items'        => __('Añadir o remover categorías','catalogo70free'),
+            'choose_from_most_used'      => __('Elegir de las más usadas','catalogo70free'),
+            'not_found'                  => __('No se encontraron categorías.','catalogo70free'),
+            'menu_name'                  => __('Categorías','catalogo70free'),
         );
         
         $cat_args = array(
@@ -126,16 +126,16 @@ class CodeCatalogo_CPT {
         
         // Etiquetas
         $tag_labels = array(
-            'name'                       => _x('Etiquetas', 'taxonomy general name', 'catalogo70'),
-            'singular_name'              => _x('Etiqueta', 'taxonomy singular name', 'catalogo70'),
-            'search_items'               => __('Buscar Etiquetas', 'catalogo70'),
-            'popular_items'              => __('Etiquetas Populares', 'catalogo70'),
-            'all_items'                  => __('Todas las Etiquetas', 'catalogo70'),
-            'edit_item'                  => __('Editar Etiqueta', 'catalogo70'),
-            'update_item'                => __('Actualizar Etiqueta', 'catalogo70'),
-            'add_new_item'               => __('Añadir Nueva Etiqueta', 'catalogo70'),
-            'new_item_name'              => __('Nombre de Nueva Etiqueta', 'catalogo70'),
-            'menu_name'                  => __('Etiquetas', 'catalogo70'),
+            'name'                       => _x('Etiquetas', 'taxonomy general name','catalogo70free'),
+            'singular_name'              => _x('Etiqueta', 'taxonomy singular name','catalogo70free'),
+            'search_items'               => __('Buscar Etiquetas','catalogo70free'),
+            'popular_items'              => __('Etiquetas Populares','catalogo70free'),
+            'all_items'                  => __('Todas las Etiquetas','catalogo70free'),
+            'edit_item'                  => __('Editar Etiqueta','catalogo70free'),
+            'update_item'                => __('Actualizar Etiqueta','catalogo70free'),
+            'add_new_item'               => __('Añadir Nueva Etiqueta','catalogo70free'),
+            'new_item_name'              => __('Nombre de Nueva Etiqueta','catalogo70free'),
+            'menu_name'                  => __('Etiquetas','catalogo70free'),
         );
         
         $tag_args = array(
@@ -199,7 +199,7 @@ class CodeCatalogo_CPT {
         $new_columns = array();
         foreach ($columns as $key => $value) {
             if ($key === 'name') {
-                $new_columns['term_id'] = __('ID', 'catalogo70');
+                $new_columns['term_id'] = __('ID','catalogo70free');
             }
             $new_columns[$key] = $value;
         }
@@ -223,11 +223,11 @@ class CodeCatalogo_CPT {
         $new_columns = array();
         foreach ($columns as $key => $value) {
             if ($key === 'title') {
-                $new_columns['product_id'] = __('ID', 'catalogo70');
+                $new_columns['product_id'] = __('ID','catalogo70free');
             }
             $new_columns[$key] = $value;
             if ($key === 'title') {
-                $new_columns['product_image'] = __('Imagen', 'catalogo70');
+                $new_columns['product_image'] = __('Imagen','catalogo70free');
             }
         }
         return $new_columns;

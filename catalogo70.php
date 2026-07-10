@@ -6,10 +6,12 @@
  * Version: 1.0.0
  * Author: Codigo70
  * Author URI: https://codigo70.com
- * Text Domain: catalogo70
+ * Text Domain: catalogo70free
  * Domain Path: /languages
  * Requires at least: 5.8
  * Requires PHP: 7.4
+ * License: GPLv2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */
 
 if (!defined('ABSPATH')) {

@@ -37,14 +37,16 @@ class CodeCatalogo_AJAX {
     public function create_field() {
         check_ajax_referer('codecatalogo_admin_nonce', 'nonce');
         if (!current_user_can('manage_options')) {
-            wp_send_json_error(array('message' => __('No tienes permisos suficientes.', 'catalogo70')));
+            wp_send_json_error(array('message' => __('No tienes permisos suficientes.','catalogo70free')));
         }
         if (!$this->field_manager->can_create_more_fields()) {
-            wp_send_json_error(array('message' => sprintf(__('Límite de %d campos alcanzado.', 'catalogo70'), CodeCatalogo_Field_Manager::FREE_MAX_FIELDS)));
+            $max_fields = intval(CodeCatalogo_Field_Manager::FREE_MAX_FIELDS);
+            /* translators: %d: maximum number of free fields */
+            wp_send_json_error(array('message' => sprintf(__('Límite de %1$d campos alcanzado.','catalogo70free'), $max_fields)));
         }
         $allowed_types = array('text', 'number', 'textarea', 'file', 'url');
         if (!in_array($_POST['field_type'], $allowed_types)) {
-            wp_send_json_error(array('message' => __('Tipo de campo no disponible.', 'catalogo70')));
+            wp_send_json_error(array('message' => __('Tipo de campo no disponible.','catalogo70free')));
         }
         $field_data = array(
             'field_name' => sanitize_key($_POST['field_name']),
@@ -59,29 +61,29 @@ class CodeCatalogo_AJAX {
             'is_required' => isset($_POST['is_required']) ? 1 : 0,
         );
         if (empty($field_data['field_name']) || empty($field_data['field_label'])) {
-            wp_send_json_error(array('message' => __('Todos los campos son requeridos.', 'catalogo70')));
+            wp_send_json_error(array('message' => __('Todos los campos son requeridos.','catalogo70free')));
         }
         $field_id = $this->field_manager->create_field($field_data);
         if ($field_id) {
-            wp_send_json_success(array('message' => __('Campo creado.', 'catalogo70'), 'field_id' => $field_id));
+            wp_send_json_success(array('message' => __('Campo creado.','catalogo70free'), 'field_id' => $field_id));
         } else {
-            wp_send_json_error(array('message' => __('Error al crear.', 'catalogo70')));
+            wp_send_json_error(array('message' => __('Error al crear.','catalogo70free')));
         }
     }
     
     public function delete_field() {
         check_ajax_referer('codecatalogo_admin_nonce', 'nonce');
-        if (!current_user_can('manage_options')) { wp_send_json_error(array('message' => __('No tienes permisos.', 'catalogo70'))); }
+        if (!current_user_can('manage_options')) { wp_send_json_error(array('message' => __('No tienes permisos.','catalogo70free'))); }
         $field_id = intval($_POST['field_id']);
         $result = $this->field_manager->delete_field($field_id);
-        $result ? wp_send_json_success(array('message' => __('Campo eliminado.', 'catalogo70'))) : wp_send_json_error(array('message' => __('Error al eliminar.', 'catalogo70')));
+        $result ? wp_send_json_success(array('message' => __('Campo eliminado.','catalogo70free'))) : wp_send_json_error(array('message' => __('Error al eliminar.','catalogo70free')));
     }
     
     public function reorder_fields() {
         check_ajax_referer('codecatalogo_admin_nonce', 'nonce');
-        if (!current_user_can('manage_options')) { wp_send_json_error(array('message' => __('No tienes permisos.', 'catalogo70'))); }
+        if (!current_user_can('manage_options')) { wp_send_json_error(array('message' => __('No tienes permisos.','catalogo70free'))); }
         $order = $_POST['order'] ?? array();
-        if (empty($order) || !is_array($order)) { wp_send_json_error(array('message' => __('Orden inválido.', 'catalogo70'))); }
+        if (empty($order) || !is_array($order)) { wp_send_json_error(array('message' => __('Orden inválido.','catalogo70free'))); }
         global $wpdb;
         $table_name = $wpdb->prefix . 'codecatalogo_fields';
         foreach ($order as $index => $field_id) {
@@ -89,7 +91,7 @@ class CodeCatalogo_AJAX {
         }
         wp_cache_delete('codecatalogo_all_fields', 'codecatalogo');
         wp_cache_delete('codecatalogo_filter_fields', 'codecatalogo');
-        wp_send_json_success(array('message' => __('Orden actualizado.', 'catalogo70')));
+        wp_send_json_success(array('message' => __('Orden actualizado.','catalogo70free')));
     }
     
     public function filter_products() {

@@ -28,9 +28,9 @@ class CodeCatalogo_Admin {
                 'ajaxurl' => esc_url(admin_url('admin-ajax.php')),
                 'nonce' => wp_create_nonce('codecatalogo_admin_nonce'),
                 'strings' => array(
-                    'confirm_delete' => esc_html__('¿Estás seguro de eliminar este campo? Esta acción no se puede deshacer.', 'catalogo70'),
-                    'error' => esc_html__('Error', 'catalogo70'),
-                    'success' => esc_html__('Éxito', 'catalogo70'),
+                    'confirm_delete' => esc_html__('¿Estás seguro de eliminar este campo? Esta acción no se puede deshacer.', 'catalogo70free'),
+                    'error' => esc_html__('Error', 'catalogo70free'),
+                    'success' => esc_html__('Éxito', 'catalogo70free'),
                 ),
             ));
         }
@@ -43,9 +43,9 @@ class CodeCatalogo_Admin {
             ?>
             <div class="notice notice-warning is-dismissible">
                 <p>
-                    <strong><?php esc_html_e('Catalogo70:', 'catalogo70'); ?></strong>
-                    <?php esc_html_e('No tienes campos personalizados configurados.', 'catalogo70'); ?>
-                    <a href="<?php echo esc_url(admin_url('admin.php?page=codecatalogo-fields')); ?>"><?php esc_html_e('Configurar campos ahora', 'catalogo70'); ?></a>
+                    <strong><?php esc_html_e('Catalogo70:', 'catalogo70free'); ?></strong>
+                    <?php esc_html_e('No tienes campos personalizados configurados.', 'catalogo70free'); ?>
+                    <a href="<?php echo esc_url(admin_url('admin.php?page=codecatalogo-fields')); ?>"><?php esc_html_e('Configurar campos ahora', 'catalogo70free'); ?></a>
                 </p>
             </div>
             <?php

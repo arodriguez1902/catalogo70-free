@@ -48,7 +48,7 @@ $categories = get_the_terms($product_id, 'codecatalogo_cat');
     
     <div class="codecatalogo-card-footer">
         <a href="<?php echo esc_url(get_permalink($product_id)); ?>" class="codecatalogo-card-link">
-            <?php esc_html_e('Ver detalles', 'catalogo70'); ?>
+            <?php esc_html_e('Ver detalles','catalogo70free'); ?>
             <span class="dashicons dashicons-arrow-right-alt2"></span>
         </a>
     </div>

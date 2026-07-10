@@ -274,14 +274,14 @@ class CodeCatalogo_SEO {
         
         // Home
         $breadcrumbs[] = array(
-            'name' => __('Inicio', 'catalogo70'),
+            'name' => __('Inicio','catalogo70free'),
             'url' => home_url('/'),
         );
         
         // Catálogo
         $catalog_slug = get_option('codecatalogo_catalog_slug', 'catalogo');
         $breadcrumbs[] = array(
-            'name' => __('Catálogo', 'catalogo70'),
+            'name' => __('Catálogo','catalogo70free'),
             'url' => home_url('/' . $catalog_slug . '/'),
         );
         

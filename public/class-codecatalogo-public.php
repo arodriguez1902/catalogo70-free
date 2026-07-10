@@ -41,9 +41,9 @@ class CodeCatalogo_Public {
             'ajaxurl' => esc_url(admin_url('admin-ajax.php')),
             'nonce' => wp_create_nonce('codecatalogo_contact_form'),
             'strings' => array(
-                'loading' => __('Cargando...', 'catalogo70'),
-                'no_results' => __('No se encontraron productos.', 'catalogo70'),
-                'error' => __('Error al cargar los productos.', 'catalogo70'),
+                'loading' => __('Cargando...','catalogo70free'),
+                'no_results' => __('No se encontraron productos.','catalogo70free'),
+                'error' => __('Error al cargar los productos.','catalogo70free'),
             ),
         ));
     }
@@ -64,7 +64,7 @@ class CodeCatalogo_Public {
     
     public function search_shortcode($atts) {
         $atts = shortcode_atts(array(
-            'placeholder' => esc_html__('Buscar productos...', 'catalogo70'),
+            'placeholder' => esc_html__('Buscar productos...','catalogo70free'),
         ), $atts);
         
         ob_start();

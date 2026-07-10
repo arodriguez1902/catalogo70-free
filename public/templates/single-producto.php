@@ -65,8 +65,8 @@ while (have_posts()) : the_post();
                             <?php endforeach; ?>
                         </div>
                         <?php if (count($all_images) > 1): ?>
-                        <button type="button" class="codecatalogo-gallery-nav codecatalogo-gallery-prev" aria-label="<?php esc_attr_e('Anterior', 'catalogo70'); ?>"><span class="dashicons dashicons-arrow-left-alt2"></span></button>
-                        <button type="button" class="codecatalogo-gallery-nav codecatalogo-gallery-next" aria-label="<?php esc_attr_e('Siguiente', 'catalogo70'); ?>"><span class="dashicons dashicons-arrow-right-alt2"></span></button>
+                        <button type="button" class="codecatalogo-gallery-nav codecatalogo-gallery-prev" aria-label="<?php esc_attr_e('Anterior','catalogo70free'); ?>"><span class="dashicons dashicons-arrow-left-alt2"></span></button>
+                        <button type="button" class="codecatalogo-gallery-nav codecatalogo-gallery-next" aria-label="<?php esc_attr_e('Siguiente','catalogo70free'); ?>"><span class="dashicons dashicons-arrow-right-alt2"></span></button>
                         <?php endif; ?>
                     </div>
                     <?php if (count($all_images) > 1): ?>
@@ -132,7 +132,7 @@ while (have_posts()) : the_post();
                 <?php endif; ?>
                 <?php if (!empty($fields)): ?>
                 <div class="codecatalogo-product-specs">
-                    <h3><?php esc_html_e('Especificaciones Técnicas', 'catalogo70'); ?></h3>
+                    <h3><?php esc_html_e('Especificaciones Técnicas','catalogo70free'); ?></h3>
                     <table class="codecatalogo-specs-table">
                         <tbody>
                             <?php foreach ($fields as $field):
@@ -142,7 +142,7 @@ while (have_posts()) : the_post();
                                 <th><?php echo esc_html($field->field_label); ?></th>
                                 <td>
                                     <?php if ($field->field_type === 'file' && !empty($field->field_value)): ?>
-                                        <a href="<?php echo esc_url($field->field_value); ?>" target="_blank" class="codecatalogo-file-link"><span class="dashicons dashicons-download"></span> <?php esc_html_e('Descargar', 'catalogo70'); ?></a>
+                                        <a href="<?php echo esc_url($field->field_value); ?>" target="_blank" class="codecatalogo-file-link"><span class="dashicons dashicons-download"></span> <?php esc_html_e('Descargar','catalogo70free'); ?></a>
                                     <?php elseif ($field->field_type === 'url'): ?>
                                         <a href="<?php echo esc_url($field->field_value); ?>" target="_blank"><?php echo esc_html($field->field_value); ?></a>
                                     <?php else: ?>
@@ -160,7 +160,7 @@ while (have_posts()) : the_post();
         
         <?php if (get_the_content()): ?>
         <div class="codecatalogo-product-content">
-            <h2><?php esc_html_e('Descripción Detallada', 'catalogo70'); ?></h2>
+            <h2><?php esc_html_e('Descripción Detallada','catalogo70free'); ?></h2>
             <?php the_content(); ?>
         </div>
         <?php endif; ?>
@@ -175,7 +175,7 @@ while (have_posts()) : the_post();
         if ($related->have_posts()):
         ?>
         <div class="codecatalogo-related-products">
-            <h2><?php esc_html_e('Productos Relacionados', 'catalogo70'); ?></h2>
+            <h2><?php esc_html_e('Productos Relacionados','catalogo70free'); ?></h2>
             <div class="codecatalogo-products-grid codecatalogo-columns-4">
                 <?php $display = new CodeCatalogo_Display();
                 while ($related->have_posts()): $related->the_post(); $display->render_product_card(get_the_ID()); endwhile;

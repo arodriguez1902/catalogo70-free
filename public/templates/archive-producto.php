@@ -23,7 +23,7 @@ $seo = new CodeCatalogo_SEO();
             } elseif (is_tax('codecatalogo_tag')) {
                 single_term_title();
             } else {
-                echo esc_html__('Catálogo de Productos', 'catalogo70');
+                echo esc_html__('Catálogo de Productos','catalogo70free');
             }
             ?>
         </h1>
@@ -53,7 +53,7 @@ $seo = new CodeCatalogo_SEO();
             'show_filters' => 'yes',
             'show_search' => 'yes',
         ));
-        echo $output;
+        echo wp_kses_post($output);
         ?>
     </div>
     
